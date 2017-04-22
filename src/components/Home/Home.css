@@ -1,0 +1,9 @@
+:local {
+  .home {
+    margin: 10px;
+
+    .title {
+      color: blue;
+    }
+  }
+}

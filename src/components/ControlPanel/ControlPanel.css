@@ -1,0 +1,16 @@
+:local {
+
+  .controlPanel {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    .gameMode {
+      background-color: #f1f1f1;
+
+      .gameModeLink {
+        color: #44cc22;
+      }
+    }
+  }
+}
