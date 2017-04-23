@@ -6,6 +6,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackConfig = require('../configs/config.hot');
 const api = require('./api').api();
+const database = require('./db').database;
 
 const app = express();
 const compiler = webpack(webpackConfig);
@@ -23,11 +24,11 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1', api);
 
-console.log(config);
 app.listen(config.uri.port, config.hostname, (error) => {
   if (error) {
     console.error(error);
   } else {
-    console.info('==> 🌎 Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', config.uri.port, config.uri.port);
+    database.connect(config.database.connectionString())
+      .then(() => console.info(`==> 🌎 App running on http://${config.uri.hostname}:${config.uri.port}/`));
   }
 });
