@@ -1,21 +1,29 @@
-const database = require('../db').database;
+const database = require('../db');
 
-export function get() {
+function get() {
   return database.find({ a: 1 }, 'games');
 }
 
-export function getAll() {
+function getAll() {
   return database.search({}, 'games');
 }
 
-export function post() {
+function post() {
   return database.insert({ b: 1 }, 'games');
 }
 
-export function remove() {
+function remove() {
   return database.remove({ b: 1 }, 'games');
 }
 
-export function update() {
+function update() {
   return database.remove({ a: 1 }, { b: 1 }, 'games');
 }
+
+module.exports = {
+  get,
+  getAll,
+  post,
+  remove,
+  update
+};

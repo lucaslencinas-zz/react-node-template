@@ -31,7 +31,7 @@ function update(selector, updatedEntity, collectionName) {
   return db.collection(collectionName).updateMany(selector, updatedEntity);
 }
 
-export const database = {
+module.exports = {
   connect,
   insert,
   find,

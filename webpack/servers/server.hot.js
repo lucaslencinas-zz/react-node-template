@@ -6,7 +6,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackConfig = require('../configs/config.hot');
 const api = require('./api').api();
-const database = require('./db').database;
+const database = require('./db');
 
 const app = express();
 const compiler = webpack(webpackConfig);
