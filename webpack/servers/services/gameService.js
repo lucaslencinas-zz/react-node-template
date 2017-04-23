@@ -1,23 +1,26 @@
 const database = require('../db');
 
-function get() {
-  return database.find({ a: 1 }, 'games');
+function get(game, fields) {
+  return database.find(game, fields, 'games');
 }
 
-function getAll() {
-  return database.search({}, 'games');
+function getAll(fields) {
+  return database.search({}, fields, 'games');
 }
 
-function post() {
-  return database.insert({ b: 1 }, 'games');
+function post(game) {
+  return database.insert(game, 'games');
 }
 
-function remove() {
-  return database.remove({ b: 1 }, 'games');
+function remove(game) {
+  return database.remove(game, 'games');
 }
 
-function update() {
-  return database.remove({ a: 1 }, { b: 1 }, 'games');
+function update(game, newGame) {
+  console.log('update gameService');
+  console.log(game);
+  console.log(newGame);
+  return database.update(game, newGame, 'games');
 }
 
 module.exports = {

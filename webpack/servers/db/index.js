@@ -15,12 +15,12 @@ function insert(entity, collectionName) {
   return collection.insertOne(entity);
 }
 
-function find(query, collectionName) {
-  return db.collection(collectionName).findOne(query);
+function find(query, fields, collectionName) {
+  return db.collection(collectionName).findOne(query, { fields });
 }
 
-function search(query, collectionName) {
-  return db.collection(collectionName).findMany(query);
+function search(query, fields, collectionName) {
+  return db.collection(collectionName).find(query, { fields }).toArray();
 }
 
 function remove(filter, collectionName) {
@@ -28,7 +28,7 @@ function remove(filter, collectionName) {
 }
 
 function update(selector, updatedEntity, collectionName) {
-  return db.collection(collectionName).updateMany(selector, updatedEntity);
+  return db.collection(collectionName).updateOne(selector, { $set: updatedEntity });
 }
 
 module.exports = {
