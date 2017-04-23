@@ -18,7 +18,7 @@ module.exports = {
 
   plugins: [
     new webpack.DefinePlugin({
-      CONFIG: JSON.stringify(config.get('CONFIG'))
+      CONFIG: JSON.stringify(config)
     })
   ],
 

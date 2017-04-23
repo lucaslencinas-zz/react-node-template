@@ -20,7 +20,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
-      CONFIG: JSON.stringify(config.get('CONFIG'))
+      CONFIG: JSON.stringify(config)
     })
   ],
 

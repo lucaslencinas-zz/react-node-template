@@ -1,6 +1,7 @@
 module.exports = {
-  CONFIG: {
-    ENVIRONMENT: process.env.NODE_ENV || 'development',
-    PORT: process.env.PORT || 3000
+  env: process.env.NODE_ENV || 'development',
+  uri: {
+    hostname: process.env.HOSTNAME || '0.0.0.0',
+    port: process.env.PORT || 3000
   }
 };
