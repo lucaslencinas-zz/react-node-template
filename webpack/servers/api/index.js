@@ -7,8 +7,8 @@ export function api() {
   const router = express.Router();
   router.use(bodyParser.json())
 
-  .get('/game', gameController.get)
-  .post('/game', gameController.post);
+  .get('/games', gameController.get)
+  .post('/games', gameController.post);
 
   return router;
 }

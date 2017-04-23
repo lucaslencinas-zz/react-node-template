@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import { Home } from 'components';
-import async from 'containers/async';
+import { Home } from 'src/components';
+import async from 'src/containers/async';
 import {
   actions,
   selectors
-} from 'domains';
+} from 'src/domains';
 
 const homeState = (state) => ({
   allGameModes: selectors.allGameModes(state)

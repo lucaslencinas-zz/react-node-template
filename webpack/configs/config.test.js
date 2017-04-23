@@ -1,12 +1,7 @@
 const config = require('config');
 const path = require('path');
 const webpack = require('webpack');
-const aliases = require('../aliases');
 const rootPath = path.resolve(__dirname, '../../');
-
-// Add new keys for tests
-aliases.test = 'src/test/src';
-aliases.sinon = 'sinon/pkg/sinon';
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -26,8 +21,7 @@ module.exports = {
     // Allow us to import components in tests like:
     // import Example from 'components/Example'
     root: [rootPath, path.join(rootPath, 'src'), path.join(rootPath, 'test')],
-    extensions: ['', '.js', '.json'],
-    alias: aliases
+    extensions: ['', '.js', '.json']
   },
 
   module: {

@@ -3,7 +3,7 @@ import React from 'react';
 import { Router, Route, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import { ReduxAsyncConnect } from 'redux-connect';
-import { Home } from 'containers';
+import { Home } from 'src/containers';
 import { configureStore } from './store';
 
 // Main component for this application

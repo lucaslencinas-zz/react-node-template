@@ -1,5 +1,5 @@
 import React from 'react';
-import { ControlPanel } from 'components';
+import { ControlPanel } from 'src/components';
 import propTypes from './PropTypes';
 import styles from './Home.css';
 

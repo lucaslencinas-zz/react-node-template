@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import { gameModeService } from 'services';
+import { gameModeService } from 'src/services';
 import actionTypes from './actionTypes';
 
 const actions = {

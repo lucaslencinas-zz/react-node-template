@@ -1,7 +1,6 @@
 const config = require('config');
 const path = require('path');
 const webpack = require('webpack');
-const aliases = require('../aliases');
 const rootPath = path.resolve(__dirname, '../../');
 
 module.exports = {
@@ -26,7 +25,6 @@ module.exports = {
 
   resolve: {
     root: rootPath,
-    alias: aliases,
     extensions: ['', '.js']
   },
 
