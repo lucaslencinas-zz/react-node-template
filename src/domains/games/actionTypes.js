@@ -1,5 +1,5 @@
 const actionTypes = {
-  FETCH_GAME_MODES: 'Fetch Game Modes'
+  FETCH_GAMES: 'Fetch Games'
 };
 
 export default actionTypes;

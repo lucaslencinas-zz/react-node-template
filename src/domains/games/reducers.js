@@ -3,13 +3,13 @@ import actionTypes from './actionTypes';
 
 const reducers = handleActions({
 
-  [actionTypes.FETCH_GAME_MODES]: {
+  [actionTypes.FETCH_GAMES]: {
     next(state = {}, action) {
-      const allGameModes = action.payload;
+      const games = action.payload;
 
       return {
         ...state,
-        allGameModes
+        games
       };
     }
   }

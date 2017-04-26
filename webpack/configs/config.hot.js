@@ -1,11 +1,12 @@
-const config = require('config');
 const path = require('path');
 const webpack = require('webpack');
+
 const rootPath = path.resolve(__dirname, '../../');
 
 module.exports = {
   entry: [
     'webpack-hot-middleware/client',
+    'whatwg-fetch',
     './src/Playground.js'
   ],
 
@@ -19,13 +20,20 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
-      CONFIG: JSON.stringify(config)
+      'process.env': {
+        __DEVELOPMENT__: true
+      }
     })
   ],
 
   resolve: {
     root: rootPath,
-    extensions: ['', '.js']
+    extensions: ['', '.js'],
+    fallback: path.join(rootPath, 'node_modules')
+  },
+
+  resolveLoader: {
+    fallback: path.join(rootPath, 'node_modules')
   },
 
   module: {

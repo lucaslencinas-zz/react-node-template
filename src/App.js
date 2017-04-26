@@ -1,12 +1,12 @@
 import 'babel-polyfill';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Router, Route, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import { ReduxAsyncConnect } from 'redux-connect';
 import { Home } from 'src/containers';
 import { configureStore } from './store';
 
-// Main component for this application
 const App = ({
   initialState,
   enhancers
@@ -21,5 +21,8 @@ const App = ({
   );
 };
 
-App.propTypes = { initialState: React.PropTypes.object, enhancers: React.PropTypes.func };
+App.propTypes = {
+  initialState: PropTypes.object,
+  enhancers: PropTypes.func
+};
 export default App;

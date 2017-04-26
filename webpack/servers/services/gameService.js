@@ -17,9 +17,6 @@ function remove(game) {
 }
 
 function update(game, newGame) {
-  console.log('update gameService');
-  console.log(game);
-  console.log(newGame);
   return database.update(game, newGame, 'games');
 }
 

@@ -7,13 +7,12 @@ import {
 } from 'src/domains';
 
 const homeState = (state) => ({
-  allGameModes: selectors.allGameModes(state)
+  games: selectors.games(state)
 });
 
 const resolve = ({ dispatch }) => {
-  // Initialize gameModes
-  const gameModesPromise = dispatch(actions.fetchGameModes());
-  return Promise.all([gameModesPromise]);
+  const gamesPromise = dispatch(actions.fetchGames());
+  return Promise.all([gamesPromise]);
 };
 
 export default async(resolve)(connect(homeState)(Home));

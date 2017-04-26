@@ -15,15 +15,18 @@
   "dependencies": {
     "autoprefixer": "~6.3.6",
     "config": "~1.21.0",
+    "cors": "^2.8.3",
     "express": "~4.13.4",
     "isomorphic-fetch": "~2.2.1",
     "mongodb": "~2.2.19",
+    "node-fetch": "^1.6.3",
     "postcss-import": "~8.1.2",
     "postcss-nested": "~1.0.0",
     "postcss-simple-extend": "~1.0.0",
     "postcss-simple-vars": "~2.0.0",
-    "react": "~15.1.0",
-    "react-dom": "~15.0.2",
+    "prop-types": "~15.5.8",
+    "react": "~15.5.4",
+    "react-dom": "~15.5.4",
     "react-redux": "~4.4.5",
     "react-router": "~2.4.1",
     "redux": "~3.5.2",
@@ -33,6 +36,7 @@
     "redux-thunk": "~2.1.0",
     "reselect": "~2.5.1",
     "webpack": "~1.13.1",
+    "whatwg-fetch": "^2.0.3",
     "yargs": "~4.7.1"
   },
   "devDependencies": {

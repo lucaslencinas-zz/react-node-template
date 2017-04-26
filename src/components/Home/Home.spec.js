@@ -1,16 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Home } from 'components';
+import Home from './Home';
 
 describe('Home', () => {
-  let allGameModes;
+  let games;
   let component;
 
   beforeEach(() => {
-    allGameModes = [];
+    games = [];
     component = shallow(
       <Home
-        allGameModes={allGameModes}
+        games={games}
       />
     );
   });

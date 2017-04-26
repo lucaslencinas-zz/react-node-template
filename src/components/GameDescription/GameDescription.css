@@ -1,0 +1,13 @@
+:local {
+
+  .gameDescription {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 20px;
+
+    h4 {
+      align-self: center;
+    }
+  }
+}
