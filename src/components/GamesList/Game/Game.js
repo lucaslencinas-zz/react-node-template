@@ -7,8 +7,11 @@ const Game = ({
   isSelected,
   onSelect
 }) => (
-  <div className={styles.game} onClick={() => onSelect(game)}>
-    {`${game.name}${isSelected ? ' is selected' : ''}`}
+  <div
+    className={`${styles.game} ${isSelected ? styles.selected : ''}`}
+    onClick={() => onSelect(game)}
+  >
+    {game.name}
   </div>
 );
 

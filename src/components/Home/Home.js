@@ -21,7 +21,7 @@ class Home extends React.Component {
     const { gameSelected } = this.state;
     return (
       <div className={styles.home}>
-        <h1 className={styles.title}>React Node Template</h1>
+        <h1 className={styles.title}><div className={styles.arrowRight} />React Node Template</h1>
         <div className={styles.content}>
           <GamesList
             games={games}

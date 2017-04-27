@@ -1,6 +1,22 @@
 :local {
 
-  .gamesList {
+  .game {
     display: flex;
+    margin: 5px;
+    padding: 10px;
+    background: #FFF;
+    cursor: pointer;
+    border-radius: 5px;
+
+    &:hover {
+      box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+      transition: all 0.1s ease-in-out;
+      transform: translate(-2px,-2px);
+      background: #fcfcfc;
+    }
+  }
+
+  .selected {
+    border: #1DB954 1px solid;
   }
 }

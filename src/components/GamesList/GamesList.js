@@ -9,6 +9,7 @@ const GamesList = ({
   onSelectGame
 }) => (
   <div className={styles.gamesList}>
+    <h3 className={styles.gameListTitle}>Games</h3>
     {games.map((game) => (<Game game={game} key={game.name} isSelected={gameSelected === game} onSelect={onSelectGame} />))}
   </div>
 );

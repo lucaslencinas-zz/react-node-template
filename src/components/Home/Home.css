@@ -1,18 +1,39 @@
 :local {
   .home {
+    /*height: calc(100% - 40px);*/
     display: flex;
     flex-direction: column;
     margin: 20px;
 
     .title {
-      color: blue;
+      display: flex;
+      color: #1DB954;
       margin: 20px;
+
+      .arrowRight {
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid green;
+        align-self: center;
+        margin-right: 20px;
+      }
     }
 
     .content {
+      background-color: #f2f2f2;
       margin: 20px;
       display: flex;
       flex-direction: row;
+
+      @media (max-width: 575px){
+        flex-direction: column;
+      }
+
+      h3 {
+        margin: 0 0 20px;
+      }
     }
   }
 }

@@ -7,19 +7,21 @@ const GameDescription = ({
 }) => {
   const renderGameContent = () => (
     <div>
-      <h4>{game.name}</h4>
-      <ul>
-        <li>{game.description}</li>
-        <li>{game.link}</li>
-        <li>{game.types}</li>
-        <li>{game.teamSizes}</li>
-      </ul>
+      <h3>{game.name}</h3>
+      <div>
+        <p><span>Description: </span><span>{game.description}</span></p>
+        <p><span>Link: </span><span>{game.link}</span></p>
+        <p><span>Types: </span><span>{game.types}</span></p>
+        <p><span>Team Sizes: </span><span>{game.teamSizes}</span></p>
+      </div>
     </div>
   );
 
   const renderEmptyContent = () => (
-    <div>
-      <h4>Select a Game</h4>
+    <div className={styles.emptyContent}>
+      <div>
+        Select a Game
+      </div>
     </div>
   );
   return (
