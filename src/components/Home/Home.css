@@ -1,6 +1,5 @@
 :local {
   .home {
-    /*height: calc(100% - 40px);*/
     display: flex;
     flex-direction: column;
     margin: 20px;

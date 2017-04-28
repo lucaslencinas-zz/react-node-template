@@ -5,19 +5,29 @@ import styles from './GamesList.css';
 
 const GamesList = ({
   games,
-  gameSelected,
-  onSelectGame
+  selectedGame,
+  onSelectGame,
+  onDeleteGame
 }) => (
   <div className={styles.gamesList}>
     <h3 className={styles.gameListTitle}>Games</h3>
-    {games.map((game) => (<Game game={game} key={game.name} isSelected={gameSelected === game} onSelect={onSelectGame} />))}
+    {games.map((game) => (
+      <Game
+        game={game}
+        key={game.name}
+        isSelected={(selectedGame || {}).slug === game.slug}
+        onSelectGame={onSelectGame}
+        onDeleteGame={onDeleteGame}
+      />
+    ))}
   </div>
 );
 
 GamesList.propTypes = {
   games: PropTypes.arrayOf(PropTypes.object),
-  gameSelected: PropTypes.object,
-  onSelectGame: PropTypes.func
+  selectedGame: PropTypes.object,
+  onSelectGame: PropTypes.func,
+  onDeleteGame: PropTypes.func
 };
 
 export default GamesList;

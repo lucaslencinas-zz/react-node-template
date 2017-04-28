@@ -7,7 +7,13 @@ import {
 } from 'src/domains';
 
 const homeState = (state) => ({
-  games: selectors.games(state)
+  games: selectors.games(state),
+  selectedGame: selectors.selectedGame(state)
+});
+
+const homeAction = (dispatch) => ({
+  onSelectGame: (payload) => dispatch(actions.selectGame(payload)),
+  onDeleteGame: (payload) => dispatch(actions.deleteGame(payload))
 });
 
 const resolve = ({ dispatch }) => {
@@ -15,4 +21,4 @@ const resolve = ({ dispatch }) => {
   return Promise.all([gamesPromise]);
 };
 
-export default async(resolve)(connect(homeState)(Home));
+export default async(resolve)(connect(homeState, homeAction)(Home));

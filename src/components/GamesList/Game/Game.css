@@ -3,16 +3,34 @@
   .game {
     display: flex;
     margin: 5px;
-    padding: 10px;
     background: #FFF;
     cursor: pointer;
     border-radius: 5px;
+    justify-content: space-between;
+
+    div {
+      padding: 10px;
+      display: inline-flex;
+    }
 
     &:hover {
       box-shadow: 0 1px 2px rgba(0,0,0,0.15);
       transition: all 0.1s ease-in-out;
       transform: translate(-2px,-2px);
       background: #fcfcfc;
+    }
+
+    .gameName {
+      flex-grow: 1;
+    }
+
+    .deleteGame {
+      font-weight: bold;
+      margin: 0 5px;
+
+      &:hover {
+        color: #1DB954;
+      }
     }
   }
 

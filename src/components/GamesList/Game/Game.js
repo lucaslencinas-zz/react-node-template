@@ -5,20 +5,22 @@ import styles from './Game.css';
 const Game = ({
   game,
   isSelected,
-  onSelect
+  onSelectGame,
+  onDeleteGame
 }) => (
-  <div
-    className={`${styles.game} ${isSelected ? styles.selected : ''}`}
-    onClick={() => onSelect(game)}
-  >
-    {game.name}
+  <div className={`${styles.game} ${isSelected ? styles.selected : ''}`}>
+    <div className={styles.gameName} onClick={() => onSelectGame(game)} >
+      {game.name}
+    </div>
+    <div className={styles.deleteGame} onClick={() => onDeleteGame(game)}>X</div>
   </div>
 );
 
 Game.propTypes = {
   game: PropTypes.object,
   isSelected: PropTypes.bool,
-  onSelect: PropTypes.func
+  onSelectGame: PropTypes.func,
+  onDeleteGame: PropTypes.func
 };
 
 export default Game;

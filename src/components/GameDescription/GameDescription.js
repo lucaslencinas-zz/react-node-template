@@ -9,10 +9,10 @@ const GameDescription = ({
     <div>
       <h3>{game.name}</h3>
       <div>
-        <p><span>Description: </span><span>{game.description}</span></p>
-        <p><span>Link: </span><span>{game.link}</span></p>
-        <p><span>Types: </span><span>{game.types}</span></p>
-        <p><span>Team Sizes: </span><span>{game.teamSizes}</span></p>
+        <p><div>Description: </div><div>{game.description}</div></p>
+        <p><div>Link: </div><div>{game.link}</div></p>
+        <p><div>Types: </div><div>{game.types}</div></p>
+        <p><div>Team Sizes: </div><div>{game.teamSizes}</div></p>
       </div>
     </div>
   );
