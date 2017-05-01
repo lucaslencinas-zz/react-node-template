@@ -2,41 +2,39 @@ import { handleActions } from 'redux-actions';
 import actionTypes from './actionTypes';
 
 const initialState = {
-  games: [],
-  selectedGame: {}
+  allGames: []
 };
 
 const reducers = handleActions({
 
   [actionTypes.FETCH_GAMES]: {
     next(state = initialState, action) {
-      const games = action.payload;
+      const allGames = action.payload;
 
       return {
         ...state,
-        games
-      };
-    }
-  },
-  [actionTypes.SELECT_GAME]: {
-    next(state = initialState, action) {
-      const game = action.payload;
-
-      return {
-        ...state,
-        selectedGame: game
+        allGames
       };
     }
   },
   [actionTypes.DELETE_GAME]: {
     next(state = initialState, action) {
       const game = action.payload;
-      const games = state.games.filter((gameInState) => gameInState.slug !== game.slug);
+      const allGames = state.allGames.filter((gameInState) => gameInState.slug !== game.slug);
 
       return {
         ...state,
-        games,
-        selectedGame: !state.selectedGame || state.selectedGame.slug === game.slug ? undefined : state.selectedGame
+        allGames
+      };
+    }
+  },
+  [actionTypes.CREATE_GAME]: {
+    next(state = initialState, action) {
+      const newGame = action.payload;
+
+      return {
+        ...state,
+        allGames: state.allGames.concat([newGame])
       };
     }
   }

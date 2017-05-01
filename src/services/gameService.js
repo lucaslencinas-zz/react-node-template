@@ -25,6 +25,25 @@ export function deleteGame(game) {
     .then(() => game);
 }
 
+export function createGame(game) {
+  const url = format({
+    hostname: 'localhost',
+    port: 3000,
+    pathname: '/api/v1/games'
+  });
+  console.log(game);
+
+  return fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(game)
+  })
+  .then(checkStatus)
+  .then(() => game);
+}
+
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;

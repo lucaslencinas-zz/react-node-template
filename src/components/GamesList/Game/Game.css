@@ -8,8 +8,13 @@
     border-radius: 5px;
     justify-content: space-between;
 
-    div {
-      padding: 10px;
+    div:first-child {
+      padding: 10px 0 10px 10px;
+      display: inline-flex;
+    }
+
+    div:last-child {
+      padding: 10px 10px 10px 0;
       display: inline-flex;
     }
 
@@ -26,7 +31,7 @@
 
     .deleteGame {
       font-weight: bold;
-      margin: 0 5px;
+      margin: 0 5px 0 0;
 
       &:hover {
         color: #1DB954;

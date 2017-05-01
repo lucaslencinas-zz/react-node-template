@@ -5,20 +5,31 @@ import {
   reducers as gamesReducers
 } from './games';
 
+import {
+  actions as uiActions,
+  actionTypes as uiActionTypes,
+  selectors as uiSelectors,
+  reducers as uiReducers
+} from './ui';
+
 const actions = {
-  ...gamesActions
+  ...gamesActions,
+  ...uiActions
 };
 
 const actionTypes = {
-  ...gamesActionTypes
+  ...gamesActionTypes,
+  ...uiActionTypes
 };
 
 const selectors = {
-  ...gamesSelectors
+  ...gamesSelectors,
+  ...uiSelectors
 };
 
 const reducers = {
-  games: gamesReducers
+  games: gamesReducers,
+  ui: uiReducers
 };
 
 export {

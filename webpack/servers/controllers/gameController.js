@@ -19,6 +19,7 @@ function getAll(req, res) {
 }
 
 function post(req, res) {
+  console.log(req);
   const game = {
     slug: req.body.slug,
     name: req.body.name,

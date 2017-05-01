@@ -8,11 +8,23 @@ const GameDescription = ({
   const renderGameContent = () => (
     <div>
       <h3>{game.name}</h3>
-      <div>
-        <p><div>Description: </div><div>{game.description}</div></p>
-        <p><div>Link: </div><div>{game.link}</div></p>
-        <p><div>Types: </div><div>{game.types}</div></p>
-        <p><div>Team Sizes: </div><div>{game.teamSizes}</div></p>
+      <div className={styles.fields}>
+        <div className={styles.fieldset}>
+          <div>Description: </div>
+          <div>{game.description}</div>
+        </div>
+        <div className={styles.fieldset}>
+          <div>Link: </div>
+          <div>{game.link}</div>
+        </div>
+        <div className={styles.fieldset}>
+          <div>Types: </div>
+          <div>{game.types}</div>
+        </div>
+        <div className={styles.fieldset}>
+          <div>Team Sizes: </div>
+          <div>{game.teamSizes}</div>
+        </div>
       </div>
     </div>
   );

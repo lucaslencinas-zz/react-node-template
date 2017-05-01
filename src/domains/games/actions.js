@@ -5,7 +5,7 @@ import actionTypes from './actionTypes';
 const actions = {
   fetchGames: createAction(actionTypes.FETCH_GAMES, gameService.getGames),
   deleteGame: createAction(actionTypes.DELETE_GAME, gameService.deleteGame),
-  selectGame: createAction(actionTypes.SELECT_GAME)
+  createGame: createAction(actionTypes.CREATE_GAME, gameService.createGame)
 };
 
 export default actions;

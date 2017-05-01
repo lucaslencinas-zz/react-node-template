@@ -1,7 +1,7 @@
 const actionTypes = {
   FETCH_GAMES: 'Fetch Games',
-  SELECT_GAME: 'Select Game',
-  DELETE_GAME: 'Delete Game'
+  DELETE_GAME: 'Delete Game',
+  CREATE_GAME: 'Create Game'
 };
 
 export default actionTypes;

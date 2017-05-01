@@ -1,7 +1,5 @@
-const games = (state) => state.games.games;
-const selectedGame = (state) => state.games.selectedGame;
+const allGames = (state) => state.games.allGames;
 
 export default {
-  games,
-  selectedGame
+  allGames
 };

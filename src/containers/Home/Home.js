@@ -7,18 +7,22 @@ import {
 } from 'src/domains';
 
 const homeState = (state) => ({
-  games: selectors.games(state),
-  selectedGame: selectors.selectedGame(state)
+  games: selectors.allGames(state),
+  selectedGame: selectors.selectedGame(state),
+  isCreateGameFormOpen: selectors.isCreateGameFormOpen(state)
 });
 
 const homeAction = (dispatch) => ({
-  onSelectGame: (payload) => dispatch(actions.selectGame(payload)),
-  onDeleteGame: (payload) => dispatch(actions.deleteGame(payload))
+  onSelectGame: (payload) => {
+    dispatch(actions.selectGame(payload));
+    dispatch(actions.closeCreateGameFrom());
+  },
+  onDeleteGame: (payload) => dispatch(actions.deleteGame(payload)),
+  onCreateGame: (payload) => dispatch(actions.createGame(payload)),
+  onCancelCreateGame: () => dispatch(actions.closeCreateGameFrom()),
+  onOpenCreateGameForm: () => dispatch(actions.openCreateGameFrom())
 });
 
-const resolve = ({ dispatch }) => {
-  const gamesPromise = dispatch(actions.fetchGames());
-  return Promise.all([gamesPromise]);
-};
+const resolve = ({ dispatch }) => dispatch(actions.fetchGames());
 
 export default async(resolve)(connect(homeState, homeAction)(Home));
