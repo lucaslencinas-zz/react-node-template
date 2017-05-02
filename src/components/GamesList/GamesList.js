@@ -10,7 +10,7 @@ const GamesList = ({
   onSelectGame,
   onDeleteGame,
   onOpenCreateGameForm,
-  isCreateGameFormOpen
+  isFormOpen
 }) => (
   <div className={styles.gamesList}>
     <h3 className={styles.gameListTitle}>Games</h3>
@@ -23,7 +23,7 @@ const GamesList = ({
         onDeleteGame={onDeleteGame}
       />
     ))}
-    <CreateGame onOpenCreateGameForm={onOpenCreateGameForm} isCreateGameFormOpen={isCreateGameFormOpen} />
+    <CreateGame onOpenCreateGameForm={onOpenCreateGameForm} isFormOpen={isFormOpen} />
   </div>
 );
 
@@ -33,7 +33,7 @@ GamesList.propTypes = {
   onSelectGame: PropTypes.func,
   onDeleteGame: PropTypes.func,
   onOpenCreateGameForm: PropTypes.func,
-  isCreateGameFormOpen: PropTypes.bool
+  isFormOpen: PropTypes.bool
 };
 
 export default GamesList;

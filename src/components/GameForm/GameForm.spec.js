@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import GameCreateForm from './GameCreateForm';
+import GameForm from './GameForm';
 
-describe('GameCreateForm', () => {
+describe('GameForm', () => {
   let game;
   let gameDescription;
 
@@ -15,11 +15,11 @@ describe('GameCreateForm', () => {
       teamSizes: [1, 2, 4]
     };
     gameDescription = shallow(
-      <GameCreateForm
+      <GameForm
         game={game}
       />
     );
   });
 
-  it('should render a GameCreateForm component', () => gameDescription.should.exist);
+  it('should render a GameForm component', () => gameDescription.should.exist);
 });

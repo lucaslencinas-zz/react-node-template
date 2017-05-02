@@ -1,7 +1,9 @@
 const actionTypes = {
   SELECT_GAME: 'Select Game',
-  OPEN_CREATE_GAME_FORM: 'Open Create Game Form',
-  CLOSE_CREATE_GAME_FORM: 'Close Create Game Form'
+  ENTER_CREATE_MODE: 'Enter Create Mode',
+  LEAVE_CREATE_MODE: 'Leave Create Mode',
+  ENTER_EDIT_MODE: 'Enter Edit Mode',
+  LEAVE_EDIT_MODE: 'Leave Edit Mode'
 };
 
 export default actionTypes;

@@ -37,6 +37,21 @@ const reducers = handleActions({
         allGames: state.allGames.concat([newGame])
       };
     }
+  },
+  [actionTypes.EDIT_GAME]: {
+    next(state = initialState, action) {
+      const updatedGame = action.payload.game;
+      const previousSlugGame = action.payload.previousGame.slug;
+      const gameIndex = state.allGames.findIndex((game) => game.slug === previousSlugGame);
+      const newGames = state.allGames.slice();
+      newGames[gameIndex] = updatedGame;
+
+      const finalState = {
+        ...state,
+        allGames: newGames
+      };
+      return finalState;
+    }
   }
 }, []);
 

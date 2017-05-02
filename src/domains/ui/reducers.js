@@ -15,19 +15,35 @@ const reducers = handleActions({
       };
     }
   },
-  [actionTypes.OPEN_CREATE_GAME_FORM]: {
+  [actionTypes.ENTER_CREATE_MODE]: {
     next(state = initialState) {
       return {
         ...state,
-        isCreateGameFormOpen: true
+        isCreating: true
       };
     }
   },
-  [actionTypes.CLOSE_CREATE_GAME_FORM]: {
+  [actionTypes.LEAVE_CREATE_MODE]: {
     next(state = initialState) {
       return {
         ...state,
-        isCreateGameFormOpen: false
+        isCreating: false
+      };
+    }
+  },
+  [actionTypes.ENTER_EDIT_MODE]: {
+    next(state = initialState) {
+      return {
+        ...state,
+        isEditing: true
+      };
+    }
+  },
+  [actionTypes.LEAVE_EDIT_MODE]: {
+    next(state = initialState) {
+      return {
+        ...state,
+        isEditing: false
       };
     }
   }

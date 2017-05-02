@@ -28,6 +28,8 @@ function remove(filter, collectionName) {
 }
 
 function update(selector, updatedEntity, collectionName) {
+  // eslint-disable-next-line
+  delete updatedEntity._id;
   return db.collection(collectionName).updateOne(selector, { $set: updatedEntity });
 }
 

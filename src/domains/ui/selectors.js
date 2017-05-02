@@ -1,7 +1,9 @@
-const isCreateGameFormOpen = (state) => state.ui.isCreateGameFormOpen;
+const isCreating = (state) => state.ui.isCreating;
+const isEditing = (state) => state.ui.isEditing;
 const selectedGame = (state) => state.ui.selectedGame;
 
 export default {
-  isCreateGameFormOpen,
+  isCreating,
+  isEditing,
   selectedGame
 };

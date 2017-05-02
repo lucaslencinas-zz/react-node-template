@@ -1,5 +1,5 @@
 :local {
-  .gameCreateForm {
+  .gameForm {
     display: flex;
     flex-direction: column;
     margin: 5px;
@@ -42,8 +42,10 @@
         margin: 5px;
         padding: 5px 20px;
         color: white;
+        outline: none;
         border: none;
         border-radius: 5px;
+        cursor: pointer;
       }
 
       button:first-child {

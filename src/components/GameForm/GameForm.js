@@ -1,46 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './GameCreateForm.css';
-
-const emptyContent = {
-  name: '',
-  description: '',
-  link: '',
-  teamSizes: '',
-  types: ''
-};
+import styles from './GameForm.css';
 
 function getSlugFrom(name) {
+  if (!name) return '';
   let slug = name.trim();
   slug = slug.replace(/ /g, '_');
   return slug.toLowerCase();
 }
 
-class GameCreateForm extends React.Component {
+class GameForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleCreateGame = this.handleCreateGame.bind(this);
-    this.handleCancelCreateGame = this.handleCancelCreateGame.bind(this);
+    this.handleSubmitAction = this.handleSubmitAction.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleLinkChange = this.handleLinkChange.bind(this);
     this.handleTeamSizesChange = this.handleTeamSizesChange.bind(this);
     this.handleTypesChange = this.handleTypesChange.bind(this);
-    this.state = emptyContent;
+    this.state = this.props.game || {};
   }
 
-  handleCreateGame() {
-    this.props.onCreateGame({
-      ...this.state,
-      slug: getSlugFrom(this.state.name)
-    });
-    this.setState(emptyContent);
+  handleSubmitAction() {
+    this.props.onSubmit({
+      previousGame: { ...this.props.game, slug: getSlugFrom((this.props.game || {}).name) },
+      game: { ...this.state, slug: getSlugFrom(this.state.name) }
+    }
+    );
   }
 
-  handleCancelCreateGame() {
-    this.props.onCancelCreateGame(this.state);
-    this.setState(emptyContent);
+  handleCancel() {
+    this.props.onCancel(this.state);
   }
 
   handleNameChange(e) {
@@ -66,8 +58,8 @@ class GameCreateForm extends React.Component {
   render() {
     const { name, description, link, teamSizes, types } = this.state;
     return (
-      <div className={styles.gameCreateForm}>
-        <h3>Create Game</h3>
+      <div className={styles.gameForm}>
+        <h3>{this.props.actionName} Game</h3>
         <div className={styles.fields}>
           <div className={styles.fieldset}>
             <div>Name: </div>
@@ -116,17 +108,19 @@ class GameCreateForm extends React.Component {
           </div>
         </div>
         <div className={styles.buttons}>
-          <button type="button" onClick={this.handleCancelCreateGame}>Cancel</button>
-          <button type="button" onClick={this.handleCreateGame}>Create</button>
+          <button type="button" onClick={this.handleCancel}>Cancel</button>
+          <button type="button" onClick={this.handleSubmitAction}>{this.props.actionName}</button>
         </div>
       </div>
     );
   }
 }
 
-GameCreateForm.propTypes = {
-  onCreateGame: PropTypes.func,
-  onCancelCreateGame: PropTypes.func
+GameForm.propTypes = {
+  game: PropTypes.object,
+  actionName: PropTypes.string,
+  onSubmit: PropTypes.func,
+  onCancel: PropTypes.func
 };
 
-export default GameCreateForm;
+export default GameForm;

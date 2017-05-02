@@ -25,13 +25,12 @@ export function deleteGame(game) {
     .then(() => game);
 }
 
-export function createGame(game) {
+export function createGame({ game }) {
   const url = format({
     hostname: 'localhost',
     port: 3000,
     pathname: '/api/v1/games'
   });
-  console.log(game);
 
   return fetch(url, {
     method: 'POST',
@@ -42,6 +41,24 @@ export function createGame(game) {
   })
   .then(checkStatus)
   .then(() => game);
+}
+
+export function updateGame({ game, previousGame }) {
+  const url = format({
+    hostname: 'localhost',
+    port: 3000,
+    pathname: `/api/v1/games/${previousGame.slug}`
+  });
+
+  return fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(game)
+  })
+  .then(checkStatus)
+  .then(() => ({ game, previousGame }));
 }
 
 function checkStatus(response) {

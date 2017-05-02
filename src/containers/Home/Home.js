@@ -9,18 +9,29 @@ import {
 const homeState = (state) => ({
   games: selectors.allGames(state),
   selectedGame: selectors.selectedGame(state),
-  isCreateGameFormOpen: selectors.isCreateGameFormOpen(state)
+  isCreating: selectors.isCreating(state),
+  isEditing: selectors.isEditing(state)
 });
 
 const homeAction = (dispatch) => ({
   onSelectGame: (payload) => {
     dispatch(actions.selectGame(payload));
-    dispatch(actions.closeCreateGameFrom());
+    dispatch(actions.leaveCreateMode());
+    dispatch(actions.leaveEditMode());
   },
   onDeleteGame: (payload) => dispatch(actions.deleteGame(payload)),
-  onCreateGame: (payload) => dispatch(actions.createGame(payload)),
-  onCancelCreateGame: () => dispatch(actions.closeCreateGameFrom()),
-  onOpenCreateGameForm: () => dispatch(actions.openCreateGameFrom())
+  onEditGame: (payload) => {
+    dispatch(actions.editGame(payload));
+    dispatch(actions.leaveEditMode());
+  },
+  onCreateGame: (payload) => {
+    dispatch(actions.createGame(payload));
+    dispatch(actions.leaveCreateMode());
+  },
+  onEnterCreateMode: () => dispatch(actions.enterCreateMode()),
+  onLeaveCreateMode: () => dispatch(actions.leaveCreateMode()),
+  onEnterEditMode: () => dispatch(actions.enterEditMode()),
+  onLeaveEditMode: () => dispatch(actions.leaveEditMode())
 });
 
 const resolve = ({ dispatch }) => dispatch(actions.fetchGames());
