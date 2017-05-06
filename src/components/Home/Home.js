@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { GamesList, GameDescription, GameForm } from 'src/components';
+import { GamesList, GameDescription, GameForm } from '~/components';
 import styles from './Home.css';
 
 const Home = ({

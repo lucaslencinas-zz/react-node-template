@@ -7,22 +7,22 @@ const GameDescription = ({
   onOpenEditGameForm
 }) => {
   const renderGameContent = () => (
-    <div>
+    <div data-test-id="game-description-content">
       <h3>{game.name}<span onClick={onOpenEditGameForm}>Edit</span></h3>
-      <div className={styles.fields}>
-        <div className={styles.fieldset}>
+      <div data-test-id="fields" className={styles.fields}>
+        <div data-test-id="fields-description" className={styles.fieldset}>
           <div>Description: </div>
           <div>{game.description}</div>
         </div>
-        <div className={styles.fieldset}>
+        <div data-test-id="fields-link" className={styles.fieldset}>
           <div>Link: </div>
           <div>{game.link}</div>
         </div>
-        <div className={styles.fieldset}>
+        <div data-test-id="fields-types" className={styles.fieldset}>
           <div>Types: </div>
           <div>{game.types}</div>
         </div>
-        <div className={styles.fieldset}>
+        <div data-test-id="fields-team-sizes" className={styles.fieldset}>
           <div>Team Sizes: </div>
           <div>{game.teamSizes}</div>
         </div>
@@ -31,14 +31,14 @@ const GameDescription = ({
   );
 
   const renderEmptyContent = () => (
-    <div className={styles.emptyContent}>
+    <div data-test-id="game-description-empty-content" className={styles.emptyContent}>
       <div>
         Select a Game
       </div>
     </div>
   );
   return (
-    <div className={styles.gameDescription}>
+    <div data-test-id="game-description" className={styles.gameDescription}>
       {game ? renderGameContent() : renderEmptyContent()}
     </div>
   );

@@ -15,5 +15,7 @@ describe('Home', () => {
     );
   });
 
-  it('should render a component', () => component.should.exist);
+  it('should render a component', () => (
+    component.should.exist
+  ));
 });
