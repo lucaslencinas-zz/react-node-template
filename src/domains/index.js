@@ -1,24 +1,35 @@
 import {
-  actions as gameModesActions,
-  actionTypes as gameModesActionTypes,
-  selectors as gameModesSelectors,
-  reducers as gameModesReducers
-} from './gameModes';
+  actions as gamesActions,
+  actionTypes as gamesActionTypes,
+  selectors as gamesSelectors,
+  reducers as gamesReducers
+} from './games';
+
+import {
+  actions as uiActions,
+  actionTypes as uiActionTypes,
+  selectors as uiSelectors,
+  reducers as uiReducers
+} from './ui';
 
 const actions = {
-  ...gameModesActions
+  ...gamesActions,
+  ...uiActions
 };
 
 const actionTypes = {
-  ...gameModesActionTypes
+  ...gamesActionTypes,
+  ...uiActionTypes
 };
 
 const selectors = {
-  ...gameModesSelectors
+  ...gamesSelectors,
+  ...uiSelectors
 };
 
 const reducers = {
-  gameModes: gameModesReducers
+  games: gamesReducers,
+  ui: uiReducers
 };
 
 export {

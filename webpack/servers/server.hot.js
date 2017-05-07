@@ -1,6 +1,7 @@
 const config = require('config');
 const path = require('path');
 const express = require('express');
+const cors = require('cors');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -11,6 +12,7 @@ const database = require('./db');
 const app = express();
 const compiler = webpack(webpackConfig);
 
+app.use(cors());
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
   publicPath: webpackConfig.output.publicPath,

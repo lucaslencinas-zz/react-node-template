@@ -1,19 +1,39 @@
 import { connect } from 'react-redux';
-import { Home } from 'src/components';
-import async from 'src/containers/async';
+import { Home } from '~/components';
+import async from '~/containers/async';
 import {
   actions,
   selectors
-} from 'src/domains';
+} from '~/domains';
 
 const homeState = (state) => ({
-  allGameModes: selectors.allGameModes(state)
+  games: selectors.allGames(state),
+  selectedGame: selectors.selectedGame(state),
+  isCreating: selectors.isCreating(state),
+  isEditing: selectors.isEditing(state)
 });
 
-const resolve = ({ dispatch }) => {
-  // Initialize gameModes
-  const gameModesPromise = dispatch(actions.fetchGameModes());
-  return Promise.all([gameModesPromise]);
-};
+const homeAction = (dispatch) => ({
+  onSelectGame: (payload) => {
+    dispatch(actions.selectGame(payload));
+    dispatch(actions.leaveCreateMode());
+    dispatch(actions.leaveEditMode());
+  },
+  onDeleteGame: (payload) => dispatch(actions.deleteGame(payload)),
+  onEditGame: (payload) => {
+    dispatch(actions.editGame(payload));
+    dispatch(actions.leaveEditMode());
+  },
+  onCreateGame: (payload) => {
+    dispatch(actions.createGame(payload));
+    dispatch(actions.leaveCreateMode());
+  },
+  onEnterCreateMode: () => dispatch(actions.enterCreateMode()),
+  onLeaveCreateMode: () => dispatch(actions.leaveCreateMode()),
+  onEnterEditMode: () => dispatch(actions.enterEditMode()),
+  onLeaveEditMode: () => dispatch(actions.leaveEditMode())
+});
 
-export default async(resolve)(connect(homeState)(Home));
+const resolve = ({ dispatch }) => dispatch(actions.fetchGames());
+
+export default async(resolve)(connect(homeState, homeAction)(Home));

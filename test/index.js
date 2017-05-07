@@ -1,37 +1,40 @@
-import 'babel-polyfill';
-import chai from 'chai';
-import chaiAsPromised from 'chai-as-promised';
-import sinonChai from 'sinon-chai';
-import chaiThings from 'chai-things';
-import chaiEnzyme from 'chai-enzyme';
+const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
+const chaiString = require('chai-string');
+const chaiEnzyme = require('chai-enzyme');
+const sinon = require('sinon');
+const sinonChai = require('sinon-chai');
+const sinonStubPromise = require('sinon-stub-promise');
+const fetch = require('node-fetch');
+const { jsdom } = require('jsdom');
 
-// To create a code coverage report for all components you have to require all the sources and test
-// See https://github.com/deepsweet/isparta-loader
+global.fetch = fetch;
+global.Response = fetch.Response;
+global.window = global;
 
-// Require all `test/**/index.js`
-const testsContext = require.context('./src/', true, /.*\.spec\.js$/);
-testsContext.keys().forEach(testsContext);
-
-// Require `src/App.js`
-const appContext = require.context('../src/', false, /App\.js$/);
-appContext.keys().forEach(appContext);
-
-// Require `src/components/index.js`
-const containersContext = require.context('../src/containers/', false, /index\.js$/);
-containersContext.keys().forEach(containersContext);
-
-// Require `src/domains/index.js`
-const domainsContext = require.context('../src/domains/', false, /index\.js$/);
-domainsContext.keys().forEach(domainsContext);
-
-// Require `src/services/index.js`
-const servicesContext = require.context('../src/services/', false, /index\.js$/);
-servicesContext.keys().forEach(servicesContext);
-
-// Setup libraries used for testing
 chai.use(chaiAsPromised);
 chai.use(sinonChai);
-chai.use(chaiThings);
-chai.use(chaiEnzyme());
+chai.use(chaiString);
+chai.use(chaiEnzyme);
+chai.should();
 
-global.should = chai.should();
+sinonStubPromise(sinon);
+
+require('css-modules-require-hook')({
+  generateScopedName: '[local]',
+  camelCase: true
+});
+
+before(() => {
+  global.document = jsdom('<html><body></body></html>');
+});
+
+beforeEach(() => {
+  global.sandbox = sinon.sandbox.create();
+  global.fetch = global.sandbox.stub();
+  global.confirm = global.sandbox.stub();
+});
+
+afterEach(() => {
+  global.sandbox.restore();
+});
