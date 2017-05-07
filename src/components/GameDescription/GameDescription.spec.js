@@ -13,7 +13,7 @@ describe('GameDescription', () => {
       description: 'some description',
       link: 'someGame.html',
       types: ['singlePlayer', 'multiPlayer'],
-      teamSizes: []
+      teamSizes: [1, 2, 4]
     };
     onOpenEditGameForm = sandbox.spy();
     gameDescription = shallow(
@@ -49,5 +49,19 @@ describe('GameDescription', () => {
     it('the onOpenEditGameForm function should have been called', () => (
       onOpenEditGameForm.should.have.been.called
     ));
+  });
+
+  context('when there is no game', () => {
+    beforeEach(() => {
+      onOpenEditGameForm = sandbox.spy();
+      gameDescription = shallow(
+        <GameDescription onOpenEditGameForm={onOpenEditGameForm} />
+      );
+    });
+
+    it('renders the emptyContent message', () => {
+      const emptyContent = gameDescription.find('[data-test-id="game-description-empty-content"]');
+      emptyContent.childAt(0).text().should.eql('Select a Game');
+    });
   });
 });

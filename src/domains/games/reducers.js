@@ -53,6 +53,6 @@ const reducers = handleActions({
       return finalState;
     }
   }
-}, []);
+}, {});
 
 export default reducers;

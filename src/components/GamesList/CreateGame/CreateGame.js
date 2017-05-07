@@ -5,6 +5,7 @@ import styles from './CreateGame.css';
 const CreateGame = ({ onOpenCreateGameForm, isFormOpen }) => (
   <div className={styles.createGame}>
     <div
+      data-test-id="create-game-button"
       display-if={!isFormOpen}
       className={styles.createGameButton}
       onClick={onOpenCreateGameForm}
