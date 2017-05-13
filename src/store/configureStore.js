@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
 import promiseMiddleware from 'redux-promise';
 import { reducer as reduxAsyncReducer } from 'redux-connect';
-import { reducers } from '~/domains';
+import { reducers } from '~/src/domains';
 
 const defaultState = {};
 const defaultEnhancers = applyMiddleware(promiseMiddleware);
