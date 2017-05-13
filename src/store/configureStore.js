@@ -1,20 +1,31 @@
-import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
-import promiseMiddleware from 'redux-promise';
-import { reducer as reduxAsyncReducer } from 'redux-connect';
+import { applyMiddleware, createStore } from 'redux';
+import { dispatchError } from '~/utils/errors';
 import { reducers } from '~/domains';
 
-const defaultState = {};
-const defaultEnhancers = applyMiddleware(promiseMiddleware);
+export const thunk = ({ dispatch, getState }) => (next) => (action) => {
+  if (typeof action === 'function') {
+    const promise = action(dispatch, getState);
 
-const configureStore = ({
-  initialState = defaultState,
-  enhancers = []
-}) => (
-  createStore(
-    combineReducers({ ...reducers, reduxAsyncConnect: reduxAsyncReducer }),
-    initialState,
-    compose(defaultEnhancers, enhancers)
-  )
-);
+    if (promise.catch) {
+      promise.catch((error) => dispatchError({ dispatch, error }));
+    }
 
-export default configureStore;
+    return promise;
+  }
+
+  return next(action);
+};
+
+export default function configureStore(initialState) {
+  const middlewares = [thunk];
+  const middleware = applyMiddleware(...middlewares);
+  const enhancers = getEnhancers(middleware);
+  const store = createStore(reducers, initialState, enhancers);
+  return store;
+}
+
+function getEnhancers(middleware) {
+  // eslint-disable-next-line global-require
+  const composeWithDevTools = require('redux-devtools-extension').composeWithDevTools;
+  return composeWithDevTools(middleware);
+}

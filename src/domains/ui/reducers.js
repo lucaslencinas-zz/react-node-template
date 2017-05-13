@@ -1,52 +1,47 @@
-import { handleActions } from 'redux-actions';
+
 import actionTypes from './actionTypes';
 
 const initialState = {};
 
-const reducers = handleActions({
-
-  [actionTypes.SELECT_GAME]: {
-    next(state = initialState, action) {
-      const game = action.payload;
-
+export default function reducers(state = initialState, action) {
+  switch (action.type) {
+    case actionTypes.SELECT_GAME:
       return {
         ...state,
-        selectedGame: game
+        selectedGame: action.game
       };
-    }
-  },
-  [actionTypes.ENTER_CREATE_MODE]: {
-    next(state = initialState) {
+
+    case actionTypes.ENTER_CREATE_MODE:
       return {
         ...state,
         isCreating: true
       };
-    }
-  },
-  [actionTypes.LEAVE_CREATE_MODE]: {
-    next(state = initialState) {
+
+    case actionTypes.LEAVE_CREATE_MODE:
       return {
         ...state,
         isCreating: false
       };
-    }
-  },
-  [actionTypes.ENTER_EDIT_MODE]: {
-    next(state = initialState) {
+
+    case actionTypes.ENTER_EDIT_MODE:
       return {
         ...state,
         isEditing: true
       };
-    }
-  },
-  [actionTypes.LEAVE_EDIT_MODE]: {
-    next(state = initialState) {
+
+    case actionTypes.LEAVE_EDIT_MODE:
       return {
         ...state,
         isEditing: false
       };
-    }
-  }
-}, {});
 
-export default reducers;
+    case actionTypes.SET_ALERT:
+      return {
+        ...state,
+        alert: action.alert
+      };
+
+    default:
+      return state;
+  }
+}

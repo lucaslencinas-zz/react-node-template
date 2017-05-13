@@ -2,17 +2,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// Set up development enhancers for redux store
-const enhancers = window.devToolsExtension ? window.devToolsExtension() : (createStore) => createStore;
-
 const rootEl = document.getElementById('root');
 
 let render = () => {
   // eslint-disable-next-line global-require
   const App = require('./App').default;
-  ReactDOM.render(
-    <App enhancers={enhancers} />,
-    rootEl);
+  ReactDOM.render(<App />, rootEl);
 };
 
 if (module.hot) {
@@ -29,6 +24,7 @@ if (module.hot) {
     try {
       renderApp();
     } catch (error) {
+      console.log(error);
       renderError(error);
     }
   };

@@ -1,5 +1,4 @@
 {
-  "check-coverage": true,
   "include": [
     "src/**/*.js"
   ],

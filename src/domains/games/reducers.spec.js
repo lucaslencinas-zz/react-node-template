@@ -8,7 +8,7 @@ describe('Games reducers', () => {
 
   context('when the state is empty', () => {
     beforeEach(() => {
-      state = {};
+      state = { allGames: [] };
     });
 
     context('and no action is triggered', () => {
@@ -45,7 +45,7 @@ describe('Games reducers', () => {
         ];
         action = {
           type: types.FETCH_GAMES,
-          payload: games
+          games
         };
         result = reducers(state, action);
       });
@@ -95,7 +95,7 @@ describe('Games reducers', () => {
         ];
         action = {
           type: types.FETCH_GAMES,
-          payload: games
+          games
         };
         result = reducers(state, action);
       });
@@ -118,7 +118,7 @@ describe('Games reducers', () => {
         };
         action = {
           type: types.DELETE_GAME,
-          payload: game
+          game
         };
         result = reducers(state, action);
       });
@@ -141,7 +141,7 @@ describe('Games reducers', () => {
         };
         action = {
           type: types.CREATE_GAME,
-          payload: game
+          game
         };
         result = reducers(state, action);
       });
@@ -166,7 +166,8 @@ describe('Games reducers', () => {
         };
         action = {
           type: types.EDIT_GAME,
-          payload: { game, previousGame }
+          game,
+          previousGame
         };
         result = reducers(state, action);
       });
