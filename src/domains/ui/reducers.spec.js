@@ -1,7 +1,7 @@
 import reducers from './reducers';
 import types from './actionTypes';
 
-describe('Games reducers', () => {
+describe('UI reducers', () => {
   let state;
   let action;
   let result;
@@ -35,7 +35,7 @@ describe('Games reducers', () => {
         };
         action = {
           type: types.SELECT_GAME,
-          payload: game
+          game
         };
         result = reducers(state, action);
       });
