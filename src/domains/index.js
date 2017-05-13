@@ -1,3 +1,6 @@
+import { combineReducers } from 'redux';
+import { reducer as reduxAsyncReducer } from 'redux-connect';
+
 import {
   actions as gamesActions,
   actionTypes as gamesActionTypes,
@@ -27,10 +30,11 @@ const selectors = {
   ...uiSelectors
 };
 
-const reducers = {
+const reducers = combineReducers({
   games: gamesReducers,
-  ui: uiReducers
-};
+  ui: uiReducers,
+  reduxAsyncConnect: reduxAsyncReducer
+});
 
 export {
   actionTypes,

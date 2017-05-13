@@ -1,58 +1,54 @@
-import { handleActions } from 'redux-actions';
 import actionTypes from './actionTypes';
 
 const initialState = {
   allGames: []
 };
 
-const reducers = handleActions({
+export default function reducers(state = initialState, action) {
+  let allGames;
+  let game;
+  let newGame;
+  let updatedGame;
+  let previousSlugGame;
+  let gameIndex;
+  let newGames;
 
-  [actionTypes.FETCH_GAMES]: {
-    next(state = initialState, action) {
-      const allGames = action.payload;
+  switch (action.type) {
+    case actionTypes.FETCH_GAMES:
+      return {
+        ...state,
+        allGames: action.games
+      };
+
+    case actionTypes.DELETE_GAME:
+      game = action.game;
+      allGames = state.allGames.filter((gameInState) => gameInState.slug !== game.slug);
 
       return {
         ...state,
         allGames
       };
-    }
-  },
-  [actionTypes.DELETE_GAME]: {
-    next(state = initialState, action) {
-      const game = action.payload;
-      const allGames = state.allGames.filter((gameInState) => gameInState.slug !== game.slug);
 
-      return {
-        ...state,
-        allGames
-      };
-    }
-  },
-  [actionTypes.CREATE_GAME]: {
-    next(state = initialState, action) {
-      const newGame = action.payload;
+    case actionTypes.CREATE_GAME:
+      newGame = action.game;
 
       return {
         ...state,
         allGames: state.allGames.concat([newGame])
       };
-    }
-  },
-  [actionTypes.EDIT_GAME]: {
-    next(state = initialState, action) {
-      const updatedGame = action.payload.game;
-      const previousSlugGame = action.payload.previousGame.slug;
-      const gameIndex = state.allGames.findIndex((game) => game.slug === previousSlugGame);
-      const newGames = state.allGames.slice();
-      newGames[gameIndex] = updatedGame;
 
-      const finalState = {
+    case actionTypes.EDIT_GAME:
+      updatedGame = action.game;
+      previousSlugGame = action.previousGame.slug;
+      gameIndex = state.allGames.findIndex((g) => g.slug === previousSlugGame);
+      newGames = state.allGames.slice();
+      newGames[gameIndex] = updatedGame;
+      return {
         ...state,
         allGames: newGames
       };
-      return finalState;
-    }
-  }
-}, {});
 
-export default reducers;
+    default:
+      return state;
+  }
+}

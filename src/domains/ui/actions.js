@@ -1,12 +1,39 @@
-import { createAction } from 'redux-actions';
 import actionTypes from './actionTypes';
 
-const actions = {
-  selectGame: createAction(actionTypes.SELECT_GAME),
-  enterCreateMode: createAction(actionTypes.ENTER_CREATE_MODE),
-  leaveCreateMode: createAction(actionTypes.LEAVE_CREATE_MODE),
-  enterEditMode: createAction(actionTypes.ENTER_EDIT_MODE),
-  leaveEditMode: createAction(actionTypes.LEAVE_EDIT_MODE)
-};
+export function selectGame(game) {
+  return {
+    type: actionTypes.SELECT_GAME,
+    game
+  };
+}
 
-export default actions;
+export function enterCreateMode() {
+  return {
+    type: actionTypes.ENTER_CREATE_MODE
+  };
+}
+
+export function leaveCreateMode() {
+  return {
+    type: actionTypes.LEAVE_CREATE_MODE
+  };
+}
+
+export function enterEditMode() {
+  return {
+    type: actionTypes.ENTER_EDIT_MODE
+  };
+}
+
+export function leaveEditMode() {
+  return {
+    type: actionTypes.LEAVE_EDIT_MODE
+  };
+}
+
+export function setAlert(alert) {
+  return {
+    type: actionTypes.SET_ALERT,
+    alert
+  };
+}
