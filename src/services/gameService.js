@@ -1,11 +1,11 @@
+import config from 'config';
 import { format } from 'url';
 import 'whatwg-fetch';
 
 export function getGames() {
   const url = format({
-    hostname: 'localhost',
-    port: 3000,
-    pathname: '/api/v1/games'
+    ...config.api,
+    pathname: `${config.api.pathname}/games`
   });
 
   return fetch(url)
@@ -15,9 +15,8 @@ export function getGames() {
 
 export function deleteGame(game) {
   const url = format({
-    hostname: 'localhost',
-    port: 3000,
-    pathname: `/api/v1/games/${game.slug}`
+    ...config.api,
+    pathname: `${config.api.pathname}/games/${game.slug}`
   });
 
   return fetch(url, { method: 'DELETE' })
@@ -27,9 +26,8 @@ export function deleteGame(game) {
 
 export function createGame({ game }) {
   const url = format({
-    hostname: 'localhost',
-    port: 3000,
-    pathname: '/api/v1/games'
+    ...config.api,
+    pathname: `${config.api.pathname}/games`
   });
 
   return fetch(url, {
@@ -45,9 +43,8 @@ export function createGame({ game }) {
 
 export function updateGame({ game, previousGame }) {
   const url = format({
-    hostname: 'localhost',
-    port: 3000,
-    pathname: `/api/v1/games/${previousGame.slug}`
+    ...config.api,
+    pathname: `${config.api.pathname}/games/${previousGame.slug}`
   });
 
   return fetch(url, {

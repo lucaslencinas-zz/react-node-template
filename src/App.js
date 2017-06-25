@@ -18,7 +18,7 @@ const App = ({ initialState = {} }) => {
   return (
     <Provider store={store} key="provider" ref={(rootInstance) => initHotLoader(rootInstance)}>
       <Router history={browserHistory} render={render} >
-        <Route path="/" component={Home} />
+        <Route path="/*" component={Home} />
       </Router>
     </Provider>
   );

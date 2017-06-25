@@ -1,13 +1,18 @@
-const config = require('config');
-const path = require('path');
-const express = require('express');
-const cors = require('cors');
-const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const webpackConfig = require('../configs/config.hot');
-const api = require('./api').api();
-const database = require('./db');
+import config from 'config';
+import cors from 'cors';
+import express from 'express';
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackConfig from '../configs/config.hot';
+import { api } from './api';
+import database from './db';
+import renderHTML from './renderHTML';
+
+require('css-modules-require-hook')({
+  generateScopedName: '[hash:base64:5]',
+  camelCase: true
+});
 
 const app = express();
 const compiler = webpack(webpackConfig);
@@ -20,11 +25,9 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 app.use(webpackHotMiddleware(compiler));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/index.html'));
-});
+app.use('/api/v1', api());
 
-app.use('/api/v1', api);
+app.use('/*', (req, res) => renderHTML(req, res));
 
 app.listen(config.uri.port, config.hostname, (error) => {
   if (error) {
