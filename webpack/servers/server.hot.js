@@ -5,8 +5,6 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../configs/config.hot';
-import { api } from './api';
-import database from './db';
 import renderHTML from './renderHTML';
 
 require('css-modules-require-hook')({
@@ -25,15 +23,12 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 app.use(webpackHotMiddleware(compiler));
 
-app.use('/api/v1', api());
-
 app.use('/*', (req, res) => renderHTML(req, res));
 
 app.listen(config.uri.port, config.hostname, (error) => {
   if (error) {
     console.error(error);
   } else {
-    database.connect(config.database.connectionString())
-      .then(() => console.info(`==> 🌎 App running on http://${config.uri.hostname}:${config.uri.port}/`));
+    console.info(`==> 🌎 App running on http://${config.uri.hostname}:${config.uri.port}/`);
   }
 });
