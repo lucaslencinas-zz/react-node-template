@@ -1,5 +1,8 @@
-module.exports = {
-  env: process.env.NODE_ENV || 'development',
+const ENV = process.env.NODE_ENV || 'development';
+
+// server configuration
+const config = {
+  env: ENV,
   uri: {
     hostname: process.env.HOSTNAME || '0.0.0.0',
     port: process.env.PORT || 3000
@@ -16,3 +19,16 @@ module.exports = {
     }
   }
 };
+
+// client configuration
+const clientConfig = {
+  api: {
+    hostname: config.uri.hostname,
+    port: config.uri.port,
+    pathname: config.api.baseUri
+  }
+};
+
+config.client = clientConfig;
+
+module.exports = config;

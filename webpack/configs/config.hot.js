@@ -36,6 +36,10 @@ module.exports = {
     fallback: path.join(rootPath, 'node_modules')
   },
 
+  externals: {
+    config: '__CONFIG__'
+  },
+
   module: {
     loaders: [
       // js
@@ -47,7 +51,10 @@ module.exports = {
       // CSS
       {
         test: /\.css$/,
-        loaders: ['style-loader', 'css-loader', 'postcss-loader'],
+        loaders: [
+          'style-loader',
+          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:5]&camelCase!postcss-loader'
+        ],
         include: path.join(rootPath, 'src')
       }
     ]
