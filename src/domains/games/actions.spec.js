@@ -72,7 +72,6 @@ describe('Games actions', () => {
           { type: UIactionTypes.SELECT_GAME, game: undefined }
         ];
 
-        sandbox.stub(gameService, 'deleteGame', () => Promise.resolve());
         return store.dispatch(actions.deleteGame(games[0]));
       });
 
@@ -94,7 +93,6 @@ describe('Games actions', () => {
           { type: UIactionTypes.SELECT_GAME, game: games[0] }
         ];
 
-        sandbox.stub(gameService, 'createGame', () => Promise.resolve({ game: games[0] }));
         return store.dispatch(actions.createGame({ game: games[0] }));
       });
 
@@ -125,7 +123,6 @@ describe('Games actions', () => {
           { type: UIactionTypes.SELECT_GAME, game }
         ];
 
-        sandbox.stub(gameService, 'updateGame', () => Promise.resolve());
         return store.dispatch(actions.editGame({ game, previousGame: games[0] }));
       });
 

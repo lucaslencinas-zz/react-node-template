@@ -40,30 +40,27 @@ export function fetchGames() {
 
 export function deleteGame(game) {
   return (dispatch) => (
-    gameService.deleteGame(game)
-      .then((() => {
-        dispatch(deleteGameSuccess(game));
-        dispatch(uiActions.selectGame(undefined));
-      }))
+    Promise.all([
+      dispatch(deleteGameSuccess(game)),
+      dispatch(uiActions.selectGame(undefined))
+    ])
   );
 }
 
 export function createGame({ game }) {
   return (dispatch) => (
-    gameService.createGame({ game })
-      .then((() => {
-        dispatch(createGameSuccess(game));
-        dispatch(uiActions.selectGame(game));
-      }))
+    Promise.all([
+      dispatch(createGameSuccess(game)),
+      dispatch(uiActions.selectGame(game))
+    ])
   );
 }
 
 export function editGame({ game, previousGame }) {
   return (dispatch) => (
-    gameService.updateGame({ game, previousGame })
-      .then((() => {
-        dispatch(editGameSuccess({ game, previousGame }));
-        dispatch(uiActions.selectGame(game));
-      }))
+    Promise.all([
+      dispatch(editGameSuccess({ game, previousGame })),
+      dispatch(uiActions.selectGame(game))
+    ])
   );
 }
